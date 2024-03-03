@@ -4,20 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-@lombok.Data
-public class Nationality {
-    private long count;
-    private String name;
+public record Nationality(long count, String name, @SerializedName("country") List<Country> countries) {
+        public record Country(String countryId, float probability) {
 
-    @SerializedName("country")
-    private List<Country> countries;
-
-
-    @lombok.Data
-    public static class Country {
-        private String countryId;
-        private float probability;
-
-    }
-
+        }
 }
